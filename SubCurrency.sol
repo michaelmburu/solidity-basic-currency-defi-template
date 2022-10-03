@@ -38,14 +38,17 @@ contract Coin {
         balances[receiver] += amount;
     }
 
+    /// @notice Send new tokens minted
+    /// @dev Explain to a developer any extra details
+    /// @param receiver, amount
     function send(address receiver, uint256 amount) public {
-        if(amount > balances[msg.sender]){
-        revert inSufficientBalance({
+        if (amount > balances[msg.sender]) {
+            revert inSufficientBalance({
                 requested: amount,
                 available: balances[msg.sender]
             });
         }
-    
+
         balances[msg.sender] -= amount;
         balances[receiver] += amount;
     }
